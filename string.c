@@ -1,4 +1,5 @@
 #include <stddef.h>
+#include <stdio.h>
 
 //
 // Created by arattel on 20.10.18.
@@ -14,6 +15,8 @@ struct my_str_t
 int my_str_getc(const my_str_t* str, size_t index);
 int my_str_putc(my_str_t* str, size_t index, char c);
 int my_str_pushback(my_str_t* str, char c);
+int my_str_popback(my_str_t* str);
+void print(const my_str_t* str);
 
 int my_str_getc(const my_str_t* str, size_t index){
     if(index >= str->size_m){
@@ -42,4 +45,22 @@ int my_str_pushback(my_str_t* str, char c){
         return 0;
     }
 }
+
+int my_str_popback(my_str_t* str){
+    if(str->capacity_m < str->size_m){
+        return -1;
+    } else{
+        int symbol = NULL;
+        symbol = (int) *(str->data + str->size_m - 1);
+        *(str->data + str->size_m - 1) = NULL;
+        return symbol;
+    }
+}
+
+void print(const my_str_t* str){
+    for(int i = 0; i < str->size_m; i++){
+        printf(*(str->data + i) + '\n');
+    }
+}
+
 
