@@ -13,6 +13,7 @@ struct my_str_t
 
 int my_str_getc(const my_str_t* str, size_t index);
 int my_str_putc(my_str_t* str, size_t index, char c);
+int my_str_pushback(my_str_t* str, char c);
 
 int my_str_getc(const my_str_t* str, size_t index){
     if(index >= str->size_m){
@@ -31,4 +32,14 @@ int my_str_putc(my_str_t* str, size_t index, char c){
     }
 }
 
+//! Додає символ в кінець.
+//! Повертає 0, якщо успішно, -1, якщо буфер закінчився.
+int my_str_pushback(my_str_t* str, char c){
+    if((str->size_m + 1) >= str->capacity_m){
+        return -1;
+    } else{
+        *(str->data + str->size_m) = c;
+        return 0;
+    }
+}
 
