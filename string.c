@@ -1,5 +1,6 @@
 #include <stddef.h>
 #include <stdio.h>
+#include <stdlib.h>
 
 //
 // Created by arattel on 20.10.18.
@@ -17,7 +18,21 @@ int my_str_putc(my_str_t* str, size_t index, char c);
 int my_str_pushback(my_str_t* str, char c);
 int my_str_popback(my_str_t* str);
 void print(const my_str_t* str);
+int my_str_copy(const my_str_t* from, my_str_t* to, int reserve);
 
+int my_str_create(my_str_t *str, size_t buf_size) {
+    if (str != NULL) {
+        char *allocatedMemory = malloc(buf_size + 1);
+        if (allocatedMemory) {
+            str->data = allocatedMemory;
+            str->capacity_m = buf_size;
+            str->size_m = 0;
+            str->data[0] = '\0';
+            return 0;
+        }
+    }
+    return -1;
+}
 
 int my_str_getc(const my_str_t* str, size_t index){
     if(index >= str->size_m){
@@ -67,5 +82,17 @@ void print(const my_str_t* str){
     }
 }
 
+
+int my_str_copy(const my_str_t* from, my_str_t* to, int reserve){
+    if(reserve) {
+        my_str_create(to, from->capacity_m);
+    } else{
+        my_str_create(to, from->size_m);
+    }
+    for(int i = 0; i < from->size_m; i++){
+        to->data[i] = from->data[i];
+    }
+    to->data[to->size_m + 1] = '\0';
+}
 
 
