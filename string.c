@@ -12,6 +12,7 @@ struct my_str_t
 };
 
 int my_str_getc(const my_str_t* str, size_t index);
+int my_str_putc(my_str_t* str, size_t index, char c);
 
 int my_str_getc(const my_str_t* str, size_t index){
     if(index >= str->size_m){
@@ -20,4 +21,14 @@ int my_str_getc(const my_str_t* str, size_t index){
         return (int) *(str->data + index);
     }
 }
+
+int my_str_putc(my_str_t* str, size_t index, char c){
+    if(index >= str->size_m){
+        return -1;
+    } else{
+        *(str->data + index) = c;
+        return 0;
+    }
+}
+
 
