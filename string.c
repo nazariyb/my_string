@@ -23,7 +23,7 @@ int my_str_getc(const my_str_t* str, size_t index){
     if(index >= str->size_m){
         return -1;
     } else{
-        return (int) *(str->data + index);
+        return (int) str->data[index];
     }
 }
 
@@ -31,7 +31,7 @@ int my_str_putc(my_str_t* str, size_t index, char c){
     if(index >= str->size_m){
         return -1;
     } else{
-        *(str->data + index) = c;
+        str->data[index] = c;
         return 0;
     }
 }
@@ -42,7 +42,8 @@ int my_str_pushback(my_str_t* str, char c){
     if((str->size_m + 1) >= str->capacity_m){
         return -1;
     } else{
-        *(str->data + str->size_m) = c;
+        str->data[str->size_m] = c;
+        str->data[str->size_m + 1] = '\0';
         str->size_m++;
         return 0;
     }
@@ -53,8 +54,8 @@ int my_str_popback(my_str_t* str){
         return -1;
     } else{
         int symbol = NULL;
-        symbol = (int) *(str->data + str->size_m - 1);
-        *(str->data + str->size_m - 1) = NULL;
+        symbol = (int) str->data[str->size_m - 1];
+        str->data[str->size_m - 1] = NULL;
         str->size_m -= 1;
         return symbol;
     }
