@@ -53,7 +53,8 @@ size_t my_str_capacity(const my_str_t *str) {
 };
 
 int main() {
-
+    printf("Hello, World!\n");
+    printf("Hello, World!\n");
 
     return 0;
 }
