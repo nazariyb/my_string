@@ -63,7 +63,7 @@ int my_str_popback(my_str_t* str){
 
 void print(const my_str_t* str){
     for(int i = 0; i < str->size_m; i++){
-        printf(*(str->data + i) + '\n');
+        printf(str->data[i] + "\n");
     }
 }
 
