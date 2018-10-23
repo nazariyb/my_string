@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <memory.h>
+#include<string.h>
+
 
 typedef struct {
     size_t capacity_m; // Розмір блока
@@ -232,7 +234,196 @@ size_t my_str_find(const my_str_t* str, const my_str_t* tofind, size_t from){
 }
 
 
+int my_str_getc(const my_str_t* str, size_t index){
+    if(index >= str->size_m){
+        return -1;
+    } else{
+        return (int) str->data[index];
+    }
+}
+
+int my_str_putc(my_str_t* str, size_t index, char c){
+    if(index >= str->size_m){
+        return -1;
+    } else{
+        str->data[index] = c;
+        return 0;
+    }
+}
+
+int my_str_popback(my_str_t* str){
+    if(str->capacity_m < str->size_m){
+        return -1;
+    } else{
+        int symbol = NULL;
+        symbol = (int) str->data[str->size_m - 1];
+        str->data[str->size_m - 1] = NULL;
+        str->size_m -= 1;
+        return symbol;
+    }
+}
+
+void print(const my_str_t* str){
+    for(int i = 0; i < str->size_m; i++){
+        char symbol = str->data[i];
+        printf("%c", symbol);
+    }
+    printf("\n");
+}
+
+
+int my_str_copy(const my_str_t* from, my_str_t* to, int reserve){
+    if(reserve) {
+        my_str_create(to, from->capacity_m);
+    } else{
+        my_str_create(to, from->size_m);
+    }
+    for(int i = 0; i < from->size_m; i++){
+        to->data[i] = from->data[i];
+    }
+    to->data[to->size_m + 1] = '\0';
+    return 0;
+}
+
+//! Вставити символ у стрічку в заданій позиції, змістивши решту символів праворуч.
+//! Якщо це неможливо, повертає -1, інакше 0.
+int my_str_insert_c(my_str_t* str, char c, size_t pos){
+    if(pos > str->size_m || pos >= str->capacity_m || (str->size_m + 1) > str->capacity_m){
+        return -1;
+    } else{
+        if(pos == str->size_m){
+            str->data[str->size_m] = c;
+            str->data[str->size_m + 1] = '\0';
+        } else{
+            size_t i = (str->size_m);
+            while(i-- > pos){
+                str->data[i + 1] = str->data[i];
+            }
+            str->data[pos] = c;
+            str->size_m++;
+        }
+        return 0;
+    }
+}
+
+void move_on(my_str_t* str, size_t start_pos, size_t gap){
+    size_t old_size = str->size_m;
+    str->size_m += gap;
+    str->data[old_size] = NULL;
+    str->data[str->size_m] = '\0';
+    size_t i = old_size;
+    while (i-->=start_pos){
+        str->data[i + gap] = str->data[i];
+    }
+}
+
+//! Вставити стрічку в заданій позиції, змістивши решту символів праворуч.
+//! Якщо це неможливо, повертає -1, інакше 0.
+int my_str_insert(my_str_t* str, const my_str_t* from, size_t pos){
+   if(str->size_m + from->size_m > str->capacity_m || pos > str->size_m){
+       return -1;
+   } else{
+       if(pos < str->size_m) {
+           move_on(str, pos, from->size_m);
+           size_t i = pos;
+           while (i - pos < from->size_m) {
+               str->data[i] = from->data[i - pos];
+               i++;
+           }
+       }else if(pos == str->size_m){
+           str->data[str->size_m] = NULL;
+           str->size_m += from->size_m;
+           str->data[str->size_m + 1] = '\0';
+           size_t i = pos;
+           while (i - pos < from->size_m) {
+               str->data[i] = from->data[i - pos];
+               i++;
+           }
+       }
+       return 0;
+   }
+}
+
+//! Вставити C-стрічку в заданій позиції, змістивши решту символів праворуч.
+//! Якщо це неможливо, повертає -1, інакше 0.
+int my_str_insert_cstr(my_str_t* str, const char* from, size_t pos){
+    size_t string_size = strlen(from);
+    if(str->size_m + string_size > str->capacity_m || pos > str->size_m){
+        return -1;
+    } else{
+        if(pos < str->size_m){
+            move_on(str, pos, string_size);
+            size_t i = pos;
+            while (i - pos < string_size) {
+                str->data[i] = from[i - pos];
+                i++;
+            }
+        }else if(pos == str->size_m){
+            str->data[str->size_m] = NULL;
+            str->size_m += string_size;
+            str->data[str->size_m + 1] = '\0';
+            size_t i = pos;
+            while (i - pos < string_size) {
+                str->data[i] = from[i - pos];
+                i++;
+            }
+        }
+        return 0;
+
+    }
+}
+
+//! Додати стрічку в кінець.
+//! Якщо це неможливо, повертає -1, інакше 0
+int my_str_append(my_str_t* str, const my_str_t* from){
+    return my_str_insert(str, from, str->size_m);
+}
+
+//! Порівняти стрічки, повернути 0, якщо рівні (за вмістом!)
+//! -1, якщо перша менша, 1 -- якщо друга.
+//! Поведінка має бути такою ж, як в strcmp.
+int my_str_cmp(my_str_t* str, const char* from){
+    for(size_t i = 0; i < str->size_m + 1; i++){
+        if(str->data[i] < from[i]){
+            return -1;
+        } else if(str->data[i] > from[i]){
+            return 1;
+        } else{
+            if(str->data[i] == '\0'){
+                return 0;
+            }
+        }
+    }
+}
+
+//! Повернути вказівник на С-стрічку, еквівалентну str.
+//! Вважатимемо, що змінювати цю С-стрічку заборонено.
+//! Якщо в буфері було зарезервовано на байт більше за макс. розмір, можна
+//! просто додати нульовий символ в кінці та повернути вказівник data.
+const char* my_str_get_cstr(my_str_t* str){
+    return str->data;
+}
+
+
 int main() {
+
+    my_str_t test_str;
+    my_str_create(&test_str, 200);
+    my_str_pushback(&test_str, 'a');
+    my_str_pushback(&test_str, 'f');
+    my_str_pushback(&test_str, 'k');
+    my_str_t test1;
+    my_str_create(&test1, 120);
+    my_str_pushback(&test1, 'x');
+    my_str_pushback(&test1, 'y');
+    my_str_pushback(&test1, 'i');
+    my_str_append(&test_str, &test1);
+    print(&test_str);
+    my_str_substr(&test_str, &test1, 2, 38);
+    char *str = my_str_get_cstr(&test_str);
+    printf("%i\n", strlen(str));
+    printf("%s\n", str);
+    print(&test1);
 
     printf("Hello, World!\n");
     printf("Hello, World!\n");
@@ -286,3 +477,4 @@ int main() {
 
     return 0;
 }
+
