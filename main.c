@@ -1,6 +1,10 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <memory.h>
+<<<<<<< HEAD
+=======
+#include <string.h>
+>>>>>>> 09b27207b1f7a6d6eba648d3710e1408876a5a5a
 
 typedef struct {
     size_t capacity_m; // Розмір блока
@@ -61,6 +65,10 @@ int my_str_empty(const my_str_t *str) {
 //! Пам'ять виділяється динамічно.
 //! 0 -- якщо все ОК, -1 -- недостатній розмір буфера, -2 -- не вдалося виділити пам'ять
 int my_str_from_cstr(my_str_t *str, char *cstr, size_t buf_size) {
+<<<<<<< HEAD
+=======
+
+>>>>>>> 09b27207b1f7a6d6eba648d3710e1408876a5a5a
     if (str) {
         char *allocatedMemory;
         if (!buf_size) {
@@ -74,11 +82,15 @@ int my_str_from_cstr(my_str_t *str, char *cstr, size_t buf_size) {
             str->data = allocatedMemory;
             str->capacity_m = buf_size ? buf_size : str_len(cstr);
             str->size_m = str_len(cstr);
+<<<<<<< HEAD
             size_t i = 0;
             while(cstr[i] != '\0'){
                 str->data[i] = cstr[i];
                 i++;
             }
+=======
+            str->data = cstr;
+>>>>>>> 09b27207b1f7a6d6eba648d3710e1408876a5a5a
             return EXIT_SUCCESS;
         }
 
@@ -135,11 +147,19 @@ int my_str_pushback(my_str_t *str, char c) {
 int my_str_append_cstr(my_str_t *str, char *from) {
 
     if (str->capacity_m - str->size_m < str_len(from)) return EXIT_FAILURE;
+<<<<<<< HEAD
     size_t i = 0;
     while(from[i] != '\0'){
         my_str_pushback(str, from[i]);
         i++;
     }
+=======
+
+    while (*from++) {
+        my_str_pushback(str, *from);
+    }
+
+>>>>>>> 09b27207b1f7a6d6eba648d3710e1408876a5a5a
     return EXIT_SUCCESS;
 }
 
@@ -256,9 +276,13 @@ int my_str_popback(my_str_t *str) {
         return -1;
     } else {
         int symbol = (int) str->data[str->size_m - 1];
+<<<<<<< HEAD
         my_str_putc(str, str->size_m - 1, '\0');
         str->size_m -= 1;
         // printf("\nstr is: %s (%zu)", str->data, str->size_m);
+=======
+        printf("\nstr is: %s (%zu)", str->data, str->size_m);
+>>>>>>> 09b27207b1f7a6d6eba648d3710e1408876a5a5a
 //        *str->data += str->size_m - 3;
 //        *(str->data + 1) = '\0';
 //        free(&str->data);
@@ -266,7 +290,11 @@ int my_str_popback(my_str_t *str) {
 //        str->data[str->size_m - 1] = '\0';
 //        my_str_putc(str, str->size_m - 1, '\0');
 //        my_str_pushback(str, '\0');
+<<<<<<< HEAD
         // printf("\nsymb is: %d\n", symbol);
+=======
+        printf("\nsymb is: %d\n", symbol);
+>>>>>>> 09b27207b1f7a6d6eba648d3710e1408876a5a5a
 //        str->size_m--;
         return symbol;
     }
@@ -414,6 +442,7 @@ const char *my_str_get_cstr(my_str_t *str) {
 }
 
 
+<<<<<<< HEAD
 //! Знайти перший символ в стрічці, повернути його номер
 //! або -1u, якщо не знайдено. from -- місце, з якого починати шукати.
 //! Якщо більше за розмір -- вважати, що не знайдено.
@@ -450,6 +479,8 @@ int test_function_for_chars(char x){
     }
 }
 
+=======
+>>>>>>> 09b27207b1f7a6d6eba648d3710e1408876a5a5a
 int main() {
 //
 //    my_str_t test_str;
@@ -468,10 +499,18 @@ int main() {
 //    char *str = my_str_get_cstr(&test_str);
 //    printf("%i\n", strlen(str));
 //    printf("%s\n", str);
+<<<<<<< HEAD
 //    print(&test1)
 
     printf("Hello, World!\n");
     printf("Hello, World!\n");
+=======
+//    print(&test1);
+
+    printf("Hello, World!\n");
+    printf("Hello, World!\n");
+
+>>>>>>> 09b27207b1f7a6d6eba648d3710e1408876a5a5a
     char cstr[] = "hello";
     my_str_t this;
 
@@ -482,6 +521,7 @@ int main() {
     printf("%zu\n", this.size_m);
     printf("%zu\n", this.capacity_m);
 
+<<<<<<< HEAD
     printf("\nTest pushback: \n");
     printf("\nBefore: %s\n", this.data);
     my_str_pushback(&this, ',');
@@ -494,6 +534,9 @@ int main() {
 
     char cstr2[] = ", world";
 
+=======
+    char cstr2[] = ", world";
+>>>>>>> 09b27207b1f7a6d6eba648d3710e1408876a5a5a
 //    test append cstr
     printf("\ntest append cstr\n");
     my_str_append_cstr(&this, cstr2);
@@ -522,13 +565,17 @@ int main() {
     printf("search %s in %s\n", to_find.data, this.data);
     printf("%zu", my_str_find(&this, &to_find, 0));
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 09b27207b1f7a6d6eba648d3710e1408876a5a5a
 //    test get substring
     printf("\ntest get substring\n");
     my_str_t substr;
     my_str_create(&substr, 30);
     printf("\nbefore: %s", substr.data);
     my_str_substr(&this, &substr, 6, this.size_m);
+<<<<<<< HEAD
     printf("\nafter: %s\n", substr.data);
 
 
@@ -546,15 +593,23 @@ int main() {
     printf("\nTest find if:\n");
     printf("Our string: %s\n", test_str.data);
     printf("Index of first symbol that is either 1 or 8: %zu", my_str_find_if(&test_str, &test_function_for_chars));
+=======
+    printf("\nafter: %s", substr.data);
+>>>>>>> 09b27207b1f7a6d6eba648d3710e1408876a5a5a
 
 //    test pop
     printf("\ntest pop\n");
     my_str_t new_this;
     my_str_from_cstr(&new_this, "12345", 20);
+<<<<<<< HEAD
     printf("Before: %s\n", new_this.data);
     printf("Char deleted: %c\n",(char)my_str_popback(&new_this));
     printf("After: %s\n", new_this.data);
 
+=======
+    printf("c: %d", my_str_popback(&new_this));
+    printf("\nafter pop: %s\n", new_this.data);
+>>>>>>> 09b27207b1f7a6d6eba648d3710e1408876a5a5a
     return 0;
 }
 

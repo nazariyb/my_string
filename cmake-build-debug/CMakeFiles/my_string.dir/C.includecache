@@ -1,0 +1,18 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/mnt/c/Users/3naza/OneDrive/Documents/poc/labs/my_string/main.c
+stdio.h
+-
+stdlib.h
+-
+memory.h
+-
+string.h
+-
+
