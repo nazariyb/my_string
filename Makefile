@@ -51,7 +51,7 @@ EQUALS = =
 CMAKE_SOURCE_DIR = /home/arattel/CLionProjects/my_string
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/arattel/CLionProjects/my_string/cmake-build-debug
+CMAKE_BINARY_DIR = /home/arattel/CLionProjects/my_string
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -80,9 +80,9 @@ edit_cache/fast: edit_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/arattel/CLionProjects/my_string/cmake-build-debug/CMakeFiles /home/arattel/CLionProjects/my_string/cmake-build-debug/CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/arattel/CLionProjects/my_string/CMakeFiles /home/arattel/CLionProjects/my_string/CMakeFiles/progress.marks
 	$(MAKE) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/arattel/CLionProjects/my_string/cmake-build-debug/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/arattel/CLionProjects/my_string/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
