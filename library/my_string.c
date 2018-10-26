@@ -229,6 +229,11 @@ size_t my_str_find(const my_str_t *str, const my_str_t *tofind, size_t from) {
 
 }
 
+char* my_str_getdata(my_str_t *str) {
+    if (str->size_m) return str->data;
+    return NULL;
+}
+
 //! Повертає символ у вказаній позиції, або -1, якщо вихід за межі стрічки
 //! Тому, власне, int а не char
 int my_str_getc(const my_str_t *str, size_t index) {
@@ -265,7 +270,17 @@ int my_str_popback(my_str_t *str) {
     }
 }
 
-void print(const my_str_t *str) {
+int my_str_getlast(my_str_t *str) {
+    if (str->capacity_m < str->size_m) {
+        return -1;
+    } else {
+        int symbol = (int) str->data[str->size_m - 1];
+        return symbol;
+    }
+
+}
+
+void my_str_print(const my_str_t *str) {
     for (int i = 0; i < str->size_m; i++) {
         char symbol = str->data[i];
         printf("%c", symbol);
