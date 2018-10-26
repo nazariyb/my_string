@@ -1,0 +1,1 @@
+/usr/bin/cc    CMakeFiles/prog2.dir/prog2.c.o  -o prog2  -L/home/nazariy/Documents/poc/labs/lab2/my_string/prog2/../library/bin -Wl,-rpath,/home/nazariy/Documents/poc/labs/lab2/my_string/prog2/../library/bin -l_my_string 
