@@ -125,10 +125,6 @@ void main() {
     printf("After appending \"%s\": %s\n", my_str_getdata(&test_string0), my_str_getdata(&test_string3));
     printf("Size after appending: %zu\n", my_str_size(&test_string3));
 
-    // Example of comparison
-    printf("\nComparison\n");
-    printf("Comparison \"%s\" function with \"ignite\" returned: %d\n", my_str_getdata(&test_string0), my_str_cmp(&test_string0, "ignite"));
-
     // Example of getting cstr
     const char * cstr = my_str_get_cstr(&test_string3);
 
@@ -137,7 +133,25 @@ void main() {
     printf("Character \'1\' is on position %zu in word \"%s\"\n", my_str_find_c(&test_string3, '1', 1), my_str_getdata(&test_string3));
 
     // Example of string comparison
+    printf("\nString comparison\n");
     my_str_t test_string4;
-    my_str_create(&test_string4, 3);
+    char * string0  = "honest";
+    my_str_from_cstr(&test_string4, "gravel", 38);
+    printf("Our strings to compare : \"%s\", \"%s\"\n", my_str_getdata(&test_string4), string0);
+    printf("Result: %d\n", my_str_cmp(&test_string4, string0));
 
+    // Example of getting a link to char array
+    const char * string1 = my_str_get_cstr(&test_string4);
+    //Example of finding character by function
+    int is_eight_or_1(char character){
+        if (character == '8' || character == '1'){
+            return 1;
+        } else{
+            return 0;
+        }
+    }
+    printf("\nFinding a character by function\n");
+    printf("Our test function returns True only if character is equal to \'1\'or \'8\'\n");
+    printf("Our string: \"%s\"\n", my_str_getdata(&test_string3));
+    printf("Index of character that is appropriate for this function: %ld\n", my_str_find_if(&test_string3, &is_eight_or_1));
 }
