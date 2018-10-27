@@ -465,14 +465,6 @@ size_t my_str_find_if(const my_str_t* str, int (*predicat)(char)){
     return (size_t) -1u;
 }
 
-int test_function_for_chars(char x){
-    if(x == '8' || x == '1'){
-        return 1;
-    } else{
-        return 0;
-    }
-}
-
 //! Прочитати стрічку із файлу. Повернути, 0, якщо успішно, -1,
 //! якщо сталися помилки. Кінець вводу -- не помилка, однак,
 //! слід не давати читанню вийти за межі буфера!
