@@ -6,7 +6,7 @@
 
 #IncludeRegexTransform: 
 
-/home/arattel/CLionProjects/my_string/library/my_string.c
+/mnt/c/Users/3naza/OneDrive/Documents/poc/labs/my_string/library/my_string.c
 stdio.h
 -
 stdlib.h
@@ -14,9 +14,9 @@ stdlib.h
 memory.h
 -
 my_string.h
-/home/arattel/CLionProjects/my_string/library/my_string.h
+/mnt/c/Users/3naza/OneDrive/Documents/poc/labs/my_string/library/my_string.h
 
-/home/arattel/CLionProjects/my_string/library/my_string.h
+/mnt/c/Users/3naza/OneDrive/Documents/poc/labs/my_string/library/my_string.h
 stdlib.h
 -
 

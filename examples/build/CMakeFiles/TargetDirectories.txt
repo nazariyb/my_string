@@ -1,0 +1,3 @@
+/mnt/c/Users/3naza/OneDrive/Documents/poc/labs/my_string/examples/build/CMakeFiles/rebuild_cache.dir
+/mnt/c/Users/3naza/OneDrive/Documents/poc/labs/my_string/examples/build/CMakeFiles/examples.dir
+/mnt/c/Users/3naza/OneDrive/Documents/poc/labs/my_string/examples/build/CMakeFiles/edit_cache.dir

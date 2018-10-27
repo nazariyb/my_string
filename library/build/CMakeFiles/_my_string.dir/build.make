@@ -43,10 +43,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/arattel/CLionProjects/my_string/library
+CMAKE_SOURCE_DIR = /mnt/c/Users/3naza/OneDrive/Documents/poc/labs/my_string/library
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/arattel/CLionProjects/my_string/library/build
+CMAKE_BINARY_DIR = /mnt/c/Users/3naza/OneDrive/Documents/poc/labs/my_string/library/build
 
 # Include any dependencies generated for this target.
 include CMakeFiles/_my_string.dir/depend.make
@@ -59,16 +59,16 @@ include CMakeFiles/_my_string.dir/flags.make
 
 CMakeFiles/_my_string.dir/my_string.c.o: CMakeFiles/_my_string.dir/flags.make
 CMakeFiles/_my_string.dir/my_string.c.o: ../my_string.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/arattel/CLionProjects/my_string/library/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building C object CMakeFiles/_my_string.dir/my_string.c.o"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/_my_string.dir/my_string.c.o   -c /home/arattel/CLionProjects/my_string/library/my_string.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/mnt/c/Users/3naza/OneDrive/Documents/poc/labs/my_string/library/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building C object CMakeFiles/_my_string.dir/my_string.c.o"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/_my_string.dir/my_string.c.o   -c /mnt/c/Users/3naza/OneDrive/Documents/poc/labs/my_string/library/my_string.c
 
 CMakeFiles/_my_string.dir/my_string.c.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/_my_string.dir/my_string.c.i"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/arattel/CLionProjects/my_string/library/my_string.c > CMakeFiles/_my_string.dir/my_string.c.i
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /mnt/c/Users/3naza/OneDrive/Documents/poc/labs/my_string/library/my_string.c > CMakeFiles/_my_string.dir/my_string.c.i
 
 CMakeFiles/_my_string.dir/my_string.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/_my_string.dir/my_string.c.s"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/arattel/CLionProjects/my_string/library/my_string.c -o CMakeFiles/_my_string.dir/my_string.c.s
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /mnt/c/Users/3naza/OneDrive/Documents/poc/labs/my_string/library/my_string.c -o CMakeFiles/_my_string.dir/my_string.c.s
 
 CMakeFiles/_my_string.dir/my_string.c.o.requires:
 
@@ -91,7 +91,7 @@ _my_string_EXTERNAL_OBJECTS =
 lib_my_string.so: CMakeFiles/_my_string.dir/my_string.c.o
 lib_my_string.so: CMakeFiles/_my_string.dir/build.make
 lib_my_string.so: CMakeFiles/_my_string.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/arattel/CLionProjects/my_string/library/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking C shared library lib_my_string.so"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/mnt/c/Users/3naza/OneDrive/Documents/poc/labs/my_string/library/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking C shared library lib_my_string.so"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/_my_string.dir/link.txt --verbose=$(VERBOSE)
 	/usr/bin/cmake -E copy lib_my_string.so ../bin/
 
@@ -109,6 +109,6 @@ CMakeFiles/_my_string.dir/clean:
 .PHONY : CMakeFiles/_my_string.dir/clean
 
 CMakeFiles/_my_string.dir/depend:
-	cd /home/arattel/CLionProjects/my_string/library/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/arattel/CLionProjects/my_string/library /home/arattel/CLionProjects/my_string/library /home/arattel/CLionProjects/my_string/library/build /home/arattel/CLionProjects/my_string/library/build /home/arattel/CLionProjects/my_string/library/build/CMakeFiles/_my_string.dir/DependInfo.cmake --color=$(COLOR)
+	cd /mnt/c/Users/3naza/OneDrive/Documents/poc/labs/my_string/library/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /mnt/c/Users/3naza/OneDrive/Documents/poc/labs/my_string/library /mnt/c/Users/3naza/OneDrive/Documents/poc/labs/my_string/library /mnt/c/Users/3naza/OneDrive/Documents/poc/labs/my_string/library/build /mnt/c/Users/3naza/OneDrive/Documents/poc/labs/my_string/library/build /mnt/c/Users/3naza/OneDrive/Documents/poc/labs/my_string/library/build/CMakeFiles/_my_string.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/_my_string.dir/depend
 

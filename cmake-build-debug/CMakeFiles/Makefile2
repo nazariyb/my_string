@@ -45,19 +45,19 @@ cmake_force:
 SHELL = /bin/sh
 
 # The CMake executable.
-CMAKE_COMMAND = /home/arattel/clion-2018.1.5/bin/cmake/bin/cmake
+CMAKE_COMMAND = /usr/bin/cmake
 
 # The command to remove a file.
-RM = /home/arattel/clion-2018.1.5/bin/cmake/bin/cmake -E remove -f
+RM = /usr/bin/cmake -E remove -f
 
 # Escaping for special characters.
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/arattel/CLionProjects/my_string
+CMAKE_SOURCE_DIR = /mnt/c/Users/3naza/OneDrive/Documents/poc/labs/my_string
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/arattel/CLionProjects/my_string/cmake-build-debug
+CMAKE_BINARY_DIR = /mnt/c/Users/3naza/OneDrive/Documents/poc/labs/my_string/cmake-build-debug
 
 #=============================================================================
 # Target rules for target CMakeFiles/my_string.c.dir
@@ -66,7 +66,7 @@ CMAKE_BINARY_DIR = /home/arattel/CLionProjects/my_string/cmake-build-debug
 CMakeFiles/my_string.c.dir/all:
 	$(MAKE) -f CMakeFiles/my_string.c.dir/build.make CMakeFiles/my_string.c.dir/depend
 	$(MAKE) -f CMakeFiles/my_string.c.dir/build.make CMakeFiles/my_string.c.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/arattel/CLionProjects/my_string/cmake-build-debug/CMakeFiles --progress-num= "Built target my_string.c"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/mnt/c/Users/3naza/OneDrive/Documents/poc/labs/my_string/cmake-build-debug/CMakeFiles --progress-num= "Built target my_string.c"
 .PHONY : CMakeFiles/my_string.c.dir/all
 
 # Include target in all.
@@ -76,9 +76,9 @@ all: CMakeFiles/my_string.c.dir/all
 
 # Build rule for subdir invocation for target.
 CMakeFiles/my_string.c.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/arattel/CLionProjects/my_string/cmake-build-debug/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /mnt/c/Users/3naza/OneDrive/Documents/poc/labs/my_string/cmake-build-debug/CMakeFiles 0
 	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/my_string.c.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/arattel/CLionProjects/my_string/cmake-build-debug/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /mnt/c/Users/3naza/OneDrive/Documents/poc/labs/my_string/cmake-build-debug/CMakeFiles 0
 .PHONY : CMakeFiles/my_string.c.dir/rule
 
 # Convenience name for target.

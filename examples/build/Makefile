@@ -48,10 +48,10 @@ RM = /usr/bin/cmake -E remove -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /mnt/c/Users/3naza/OneDrive/Documents/poc/labs/my_string
+CMAKE_SOURCE_DIR = /mnt/c/Users/3naza/OneDrive/Documents/poc/labs/my_string/examples
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /mnt/c/Users/3naza/OneDrive/Documents/poc/labs/my_string/cmake-build-debug
+CMAKE_BINARY_DIR = /mnt/c/Users/3naza/OneDrive/Documents/poc/labs/my_string/examples/build
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -80,9 +80,9 @@ edit_cache/fast: edit_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /mnt/c/Users/3naza/OneDrive/Documents/poc/labs/my_string/cmake-build-debug/CMakeFiles /mnt/c/Users/3naza/OneDrive/Documents/poc/labs/my_string/cmake-build-debug/CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start /mnt/c/Users/3naza/OneDrive/Documents/poc/labs/my_string/examples/build/CMakeFiles /mnt/c/Users/3naza/OneDrive/Documents/poc/labs/my_string/examples/build/CMakeFiles/progress.marks
 	$(MAKE) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /mnt/c/Users/3naza/OneDrive/Documents/poc/labs/my_string/cmake-build-debug/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /mnt/c/Users/3naza/OneDrive/Documents/poc/labs/my_string/examples/build/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -111,17 +111,44 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named my_string.c
+# Target rules for targets named examples
 
 # Build rule for target.
-my_string.c: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 my_string.c
-.PHONY : my_string.c
+examples: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 examples
+.PHONY : examples
 
 # fast build rule for target.
-my_string.c/fast:
-	$(MAKE) -f CMakeFiles/my_string.c.dir/build.make CMakeFiles/my_string.c.dir/build
-.PHONY : my_string.c/fast
+examples/fast:
+	$(MAKE) -f CMakeFiles/examples.dir/build.make CMakeFiles/examples.dir/build
+.PHONY : examples/fast
+
+examples.o: examples.c.o
+
+.PHONY : examples.o
+
+# target to build an object file
+examples.c.o:
+	$(MAKE) -f CMakeFiles/examples.dir/build.make CMakeFiles/examples.dir/examples.c.o
+.PHONY : examples.c.o
+
+examples.i: examples.c.i
+
+.PHONY : examples.i
+
+# target to preprocess a source file
+examples.c.i:
+	$(MAKE) -f CMakeFiles/examples.dir/build.make CMakeFiles/examples.dir/examples.c.i
+.PHONY : examples.c.i
+
+examples.s: examples.c.s
+
+.PHONY : examples.s
+
+# target to generate assembly for a file
+examples.c.s:
+	$(MAKE) -f CMakeFiles/examples.dir/build.make CMakeFiles/examples.dir/examples.c.s
+.PHONY : examples.c.s
 
 # Help Target
 help:
@@ -130,8 +157,11 @@ help:
 	@echo "... clean"
 	@echo "... depend"
 	@echo "... rebuild_cache"
-	@echo "... my_string.c"
+	@echo "... examples"
 	@echo "... edit_cache"
+	@echo "... examples.o"
+	@echo "... examples.i"
+	@echo "... examples.s"
 .PHONY : help
 
 

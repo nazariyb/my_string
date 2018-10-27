@@ -1,0 +1,1 @@
+/usr/bin/cc    CMakeFiles/examples.dir/examples.c.o  -o examples  -L/mnt/c/Users/3naza/OneDrive/Documents/poc/labs/my_string/examples/../library/bin -Wl,-rpath,/mnt/c/Users/3naza/OneDrive/Documents/poc/labs/my_string/examples/../library/bin -l_my_string 

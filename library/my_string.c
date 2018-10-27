@@ -195,7 +195,7 @@ int my_str_substr(const my_str_t *str, my_str_t *to, size_t beg, size_t end) {
             end_index = str->size_m;
         }
         to->size_m = slice_size;
-        to->data[slice_size] = '\0';
+//        to->data[slice_size] = '\0';
         for (size_t i = beg; i < end_index; i++) {
             to->data[i - beg] = str->data[i];
         }
@@ -335,7 +335,7 @@ void move_on(my_str_t *str, size_t start_pos, size_t gap) {
 
 //! Вставити стрічку в заданій позиції, змістивши решту символів праворуч.
 //! Якщо це неможливо, повертає -1, інакше 0.
-int my_str_insert(my_str_t *str, const my_str_t *from, size_t pos) {
+int my_str_insert(my_str_t *str, my_str_t *from, size_t pos) {
     if (str->size_m + from->size_m > str->capacity_m || pos > str->size_m) {
         return -1;
     } else {
@@ -347,14 +347,22 @@ int my_str_insert(my_str_t *str, const my_str_t *from, size_t pos) {
                 i++;
             }
         } else if (pos == str->size_m) {
-            str->data[str->size_m] = '\0';
-            str->size_m += from->size_m;
-            str->data[str->size_m + 1] = '\0';
-            size_t i = pos;
-            while (i - pos < from->size_m) {
-                str->data[i] = from->data[i - pos];
-                i++;
-            }
+                my_str_append(str, from);
+//            str->data[str->size_m] = '\0';
+//            printf("\n\n\tFROM LIB\nstr->size_m: %zu, from->size_m: %zu\n\n",
+//                   str->size_m, from->size_m);
+//            while (*from->data) {
+//                my_str_pushback(str, *from->data++);
+//            }
+//            str->size_m += from->size_m;
+//            printf("\n\n\tFROM LIB\nstr->size_m: %zu, from->size_m: %zu\n\n",
+//                    str->size_m, from->size_m);
+//            str->data[str->size_m + 1] = '\0';
+//            size_t i = pos;
+//            while (i - pos < from->size_m) {
+//                str->data[i] = from->data[i - pos];
+//                i++;
+//            }
         }
         return 0;
     }
@@ -391,14 +399,22 @@ int my_str_insert_cstr(my_str_t *str, const char *from, size_t pos) {
 
 //! Додати стрічку в кінець.
 //! Якщо це неможливо, повертає -1, інакше 0
-int my_str_append(my_str_t *str, const my_str_t *from) {
-    return my_str_insert(str, from, str->size_m);
+int my_str_append(my_str_t *str, my_str_t *from) {
+
+//    if (str->capacity_m - str->size_m < str_len(from)) return EXIT_FAILURE;
+    size_t i = 0;
+    while(from->data[i]) {
+        my_str_pushback(str, from->data[i++]);
+    }
+//    *from->data -= from->size_m;
+    return EXIT_SUCCESS;
+
 }
 
 //! Порівняти стрічки, повернути 0, якщо рівні (за вмістом!)
 //! -1, якщо перша менша, 1 -- якщо друга.
 //! Поведінка має бути такою ж, як в strcmp.
-int my_str_cmp(my_str_t *str, const char *from) {
+int my_str_cmp(const my_str_t *str, const char *from) {
     for (size_t i = 0; i < str->size_m + 1; i++) {
         if (str->data[i] < from[i]) {
             return -1;
@@ -430,7 +446,7 @@ size_t my_str_find_c(const my_str_t* str, char tofind, size_t from){
     } else{
         for(size_t i = from; i < str->size_m; i++){
             if(str->data[i] == tofind){
-                return (int) i;
+                return i;
             }
         }
         return (size_t) -1u;
@@ -457,9 +473,9 @@ int test_function_for_chars(char x){
     }
 }
 
-/*
-int main() {
-//
+
+//int main() {
+////
 //    my_str_t test_str;
 //    my_str_create(&test_str, 200);
 //    my_str_pushback(&test_str, 'a');
@@ -471,97 +487,102 @@ int main() {
 //    my_str_pushback(&test1, 'y');
 //    my_str_pushback(&test1, 'i');
 //    my_str_append(&test_str, &test1);
-//    print(&test_str);
+//    printf("res: %s\n", test_str.data);
+
 //    my_str_substr(&test_str, &test1, 2, 38);
 //    char *str = my_str_get_cstr(&test_str);
 //    printf("%i\n", strlen(str));
 //    printf("%s\n", str);
 //    print(&test1)
+//
+//    printf("Hello, World!\n");
+//    printf("Hello, World!\n");
+//    char cstr[] = "hello";
+//    my_str_t this;
+//
+////    test cstr to str
+//    printf("\ntest cstr to str\n");
+//    my_str_from_cstr(&this, cstr, 30);
+//    printf("%s\n", this.data);
+//    printf("%zu\n", this.size_m);
+//    printf("%zu\n", this.capacity_m);
+//
+//    printf("\nTest pushback: \n");
+//    printf("\nBefore: %s\n", this.data);
+//    my_str_pushback(&this, ',');
+//    printf("\nAfter: %s\n", this.data);
+//
+//    printf("\nTest pohback: \n");
+//    printf("\nBefore: %s\n", this.data);
+//    my_str_popback(&this);
+//    printf("\nAfter: %s\n", this.data);
+//
+//    char cstr2[] = ", world";
+//
+////    test append cstr
+//    printf("\ntest append cstr\n");
+//    my_str_append_cstr(&this, cstr2);
+//    printf("new %s\n", this.data);
+//    printf("%zu\n", this.size_m);
+//    printf("%zu", this.capacity_m);
+//
+////    test copy
+//    printf("\ntest copy\n");
+//    char try_copy[] = "try copy! 123";
+//    char to_copy[30];
+//    str_copy(to_copy, try_copy);
+//    printf("%s", to_copy);
+//
+////    test cat
+//    printf("\ntest cat\n");
+//    char yes[] = " yes";
+//    char *after_cat[30];
+//    *after_cat = str_cat(to_copy, yes);
+//    printf("%s", *after_cat);
+//
+////    test find substring
+//    printf("\ntest find substring\n");
+//    my_str_t to_find;
+//    my_str_from_cstr(&to_find, "36", 30);
+//    my_str_t num;
+//    my_str_from_cstr(&num, "13619", 30);
+////    my_str_append_cstr(&num, "lak");
+////    my_str_popback(&num);
+//    printf("search %s in %s\n", to_find.data, num.data);
+//    printf("%zu", my_str_find(&num, &to_find, 0));
 
-    printf("Hello, World!\n");
-    printf("Hello, World!\n");
-    char cstr[] = "hello";
-    my_str_t this;
+//
+////    test get substring
+//    printf("\ntest get substring\n");
+//    my_str_t substr;
+//    my_str_create(&substr, 30);
+//    printf("\nbefore: %s", substr.data);
+//    my_str_substr(&this, &substr, 6, this.size_m);
+//    printf("\nafter: %s\n", substr.data);
+//
+//
+//    printf("\nTest find:\n");
+//    my_str_t test_str;
+//    my_str_create(&test_str, 20);
+//    my_str_pushback(&test_str, '2');
+//    my_str_pushback(&test_str, '1');
+//    my_str_pushback(&test_str, '0');
+//    my_str_pushback(&test_str, '1');
+//    printf("Our string: %s\n", test_str.data);
+//    printf("Index of 1, beginning with 0: %zu\n", my_str_find_c(&test_str, '1', 0));
+//    printf("Index of 1, beginning with 2: %zu\n", my_str_find_c(&test_str, '1', 2));
+//    printf("Index of 8, beginning with 0: %zu\n", my_str_find_c(&test_str, '8', 0));
+//    printf("\nTest find if:\n");
+//    printf("Our string: %s\n", test_str.data);
+//    printf("Index of first symbol that is either 1 or 8: %zu", my_str_find_if(&test_str, &test_function_for_chars));
+////    test pop
+//    printf("\ntest pop\n");
+//    my_str_t new_this;
+//    my_str_from_cstr(&new_this, "12345", 20);
+//    printf("Before: %s\n", new_this.data);
+//    printf("Char deleted: %c\n",(char)my_str_popback(&new_this));
+//    printf("After: %s\n", new_this.data);
+//
+//    return 0;
+//}
 
-//    test cstr to str
-    printf("\ntest cstr to str\n");
-    my_str_from_cstr(&this, cstr, 30);
-    printf("%s\n", this.data);
-    printf("%zu\n", this.size_m);
-    printf("%zu\n", this.capacity_m);
-
-    printf("\nTest pushback: \n");
-    printf("\nBefore: %s\n", this.data);
-    my_str_pushback(&this, ',');
-    printf("\nAfter: %s\n", this.data);
-
-    printf("\nTest pohback: \n");
-    printf("\nBefore: %s\n", this.data);
-    my_str_popback(&this);
-    printf("\nAfter: %s\n", this.data);
-
-    char cstr2[] = ", world";
-
-//    test append cstr
-    printf("\ntest append cstr\n");
-    my_str_append_cstr(&this, cstr2);
-    printf("new %s\n", this.data);
-    printf("%zu\n", this.size_m);
-    printf("%zu", this.capacity_m);
-
-//    test copy
-    printf("\ntest copy\n");
-    char try_copy[] = "try copy! 123";
-    char to_copy[30];
-    str_copy(to_copy, try_copy);
-    printf("%s", to_copy);
-
-//    test cat
-    printf("\ntest cat\n");
-    char yes[] = " yes";
-    char *after_cat[30];
-    *after_cat = str_cat(to_copy, yes);
-    printf("%s", *after_cat);
-
-//    test find substring
-    printf("\ntest find substring\n");
-    my_str_t to_find;
-    my_str_from_cstr(&to_find, "or", 30);
-    printf("search %s in %s\n", to_find.data, this.data);
-    printf("%zu", my_str_find(&this, &to_find, 0));
-
-
-//    test get substring
-    printf("\ntest get substring\n");
-    my_str_t substr;
-    my_str_create(&substr, 30);
-    printf("\nbefore: %s", substr.data);
-    my_str_substr(&this, &substr, 6, this.size_m);
-    printf("\nafter: %s\n", substr.data);
-
-
-    printf("\nTest find:\n");
-    my_str_t test_str;
-    my_str_create(&test_str, 20);
-    my_str_pushback(&test_str, '2');
-    my_str_pushback(&test_str, '1');
-    my_str_pushback(&test_str, '0');
-    my_str_pushback(&test_str, '1');
-    printf("Our string: %s\n", test_str.data);
-    printf("Index of 1, beginning with 0: %zu\n", my_str_find_c(&test_str, '1', 0));
-    printf("Index of 1, beginning with 2: %zu\n", my_str_find_c(&test_str, '1', 2));
-    printf("Index of 8, beginning with 0: %zu\n", my_str_find_c(&test_str, '8', 0));
-    printf("\nTest find if:\n");
-    printf("Our string: %s\n", test_str.data);
-    printf("Index of first symbol that is either 1 or 8: %zu", my_str_find_if(&test_str, &test_function_for_chars));
-//    test pop
-    printf("\ntest pop\n");
-    my_str_t new_this;
-    my_str_from_cstr(&new_this, "12345", 20);
-    printf("Before: %s\n", new_this.data);
-    printf("Char deleted: %c\n",(char)my_str_popback(&new_this));
-    printf("After: %s\n", new_this.data);
-
-    return 0;
-}
-*/
