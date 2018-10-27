@@ -4,7 +4,7 @@
 #include "my_string.h"
 #include <stdio.h>
 
-void main() {
+void main(int* argc, char* argv[]) {
 
     // Example of type casting
     my_str_t test_string0;
@@ -139,5 +139,18 @@ void main() {
     // Example of string comparison
     my_str_t test_string4;
     my_str_create(&test_string4, 3);
+
+    // example of read file (pattern)
+    FILE* inp_file = fopen(argv[1], "r");
+    my_str_t file_str;
+    my_str_read_file(&file_str, inp_file);
+    printf("\n%s\n", my_str_getdata(&file_str));
+    fclose(inp_file);
+
+    // example of read from keyboard (pattern)
+    my_str_t read_str;
+    my_str_read(&read_str);
+    printf("\n%s\n", my_str_getdata(&read_str));
+
 
 }

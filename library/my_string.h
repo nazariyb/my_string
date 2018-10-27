@@ -6,6 +6,7 @@
 #define MY_STRING_STRING_H
 
 #include <stdlib.h>
+#include <stdio.h>
 
 // typedef struct my_str_t my_str_t;
 typedef struct
@@ -45,5 +46,7 @@ int my_str_cmp(const my_str_t *str, const char *from);
 const char *my_str_get_cstr(my_str_t *str);
 size_t my_str_find_c(const my_str_t* str, char tofind, size_t from);
 size_t my_str_find_if(const my_str_t* str, int (*predicat)(char));
+int my_str_read_file(my_str_t* str, FILE* file);
+int my_str_read(my_str_t* str);
 
 #endif //MY_STRING_STRING_H

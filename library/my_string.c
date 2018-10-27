@@ -473,8 +473,58 @@ int test_function_for_chars(char x){
     }
 }
 
+//! Прочитати стрічку із файлу. Повернути, 0, якщо успішно, -1,
+//! якщо сталися помилки. Кінець вводу -- не помилка, однак,
+//! слід не давати читанню вийти за межі буфера!
+//! Рекомендую скористатися fgets().
+int my_str_read_file(my_str_t* str, FILE* file) {
 
-//int main() {
+    if (!file) return EXIT_FAILURE;
+
+    fseek(file, 0, SEEK_END);
+    size_t file_size = ftell(file);
+    fseek(file, 0, SEEK_SET);
+
+    my_str_create(str, file_size);
+    char file_cstr[file_size];
+
+    while (fgets(file_cstr, file_size, file)) {
+        my_str_append_cstr(str, file_cstr);
+    };
+
+    return EXIT_SUCCESS;
+
+}
+
+//! Аналог my_str_read_file, із stdin
+int my_str_read(my_str_t* str) {
+
+    my_str_create(str, 2000);
+    char read_cstr[2000];
+
+    while (*fgets(read_cstr, 2000, stdin) != '\n') {
+        if (str->capacity_m - str->size_m < str_len(read_cstr))
+            return EXIT_FAILURE;
+        my_str_append_cstr(str, read_cstr);
+    };
+
+    return EXIT_SUCCESS;
+
+}
+
+//int main(int* argc, char* argv[]) {
+//  tesr read file
+//    FILE* inp_file = fopen(argv[1], "r");
+//    my_str_t file_str;
+//    my_str_read_file(&file_str, inp_file);
+//    printf("\n%s\n", my_str_getdata(&file_str));
+
+//test read
+//    my_str_t read_str;
+//    my_str_read(&read_str);
+//    printf("\n%s\n", my_str_getdata(&read_str));
+
+
 ////
 //    my_str_t test_str;
 //    my_str_create(&test_str, 200);
