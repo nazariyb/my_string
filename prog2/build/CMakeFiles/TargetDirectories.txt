@@ -1,3 +1,0 @@
-/home/nazariy/Documents/poc/labs/lab2/my_string/prog2/build/CMakeFiles/rebuild_cache.dir
-/home/nazariy/Documents/poc/labs/lab2/my_string/prog2/build/CMakeFiles/prog2.dir
-/home/nazariy/Documents/poc/labs/lab2/my_string/prog2/build/CMakeFiles/edit_cache.dir
