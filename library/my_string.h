@@ -41,7 +41,9 @@ void move_on(my_str_t *str, size_t start_pos, size_t gap);
 int my_str_insert(my_str_t *str, const my_str_t *from, size_t pos);
 int my_str_insert_cstr(my_str_t *str, const char *from, size_t pos);
 int my_str_append(my_str_t *str, const my_str_t *from);
-int my_str_cmp(my_str_t *str, const char *from);
+int my_str_cmp(const my_str_t *str, const char *from);
 const char *my_str_get_cstr(my_str_t *str);
+size_t my_str_find_c(const my_str_t* str, char tofind, size_t from);
+size_t my_str_find_if(const my_str_t* str, int (*predicat)(char));
 
 #endif //MY_STRING_STRING_H

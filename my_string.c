@@ -280,9 +280,9 @@ int my_str_copy(const my_str_t *from, my_str_t *to, int reserve) {
         my_str_create(to, from->size_m);
     }
     for (int i = 0; i < from->size_m; i++) {
-        to->data[i] = from->data[i];
+        my_str_pushback(to, from->data[i]);
     }
-    to->data[to->size_m + 1] = '\0';
+    to->data[from->size_m + 1] = '\0';
     return 0;
 }
 
@@ -463,53 +463,57 @@ int main() {
 //    printf("%s\n", str);
 //    print(&test1)
 
+
+
+
     printf("Hello, World!\n");
     printf("Hello, World!\n");
     char cstr[] = "hello";
     my_str_t this;
 
 //    test cstr to str
-    printf("\ntest cstr to str\n");
+    printf("\nTest cstr to str\n");
     my_str_from_cstr(&this, cstr, 30);
-    printf("%s\n", this.data);
-    printf("%zu\n", this.size_m);
-    printf("%zu\n", this.capacity_m);
+    printf("Word: %s\n", this.data);
+    printf("Length: %zu\n", this.size_m);
+    printf("Buffer_size: %zu\n", this.capacity_m);
 
-    printf("\nTest pushback: \n");
-    printf("\nBefore: %s\n", this.data);
+    printf("\nTest pushback:");
+    printf("\nBefore: \"%s\"", this.data);
+    printf("\nChar to push: \'%c\'", ',');
     my_str_pushback(&this, ',');
-    printf("\nAfter: %s\n", this.data);
+    printf("\nAfter: \"%s\"\n", this.data);
 
-    printf("\nTest pohback: \n");
-    printf("\nBefore: %s\n", this.data);
-    my_str_popback(&this);
-    printf("\nAfter: %s\n", this.data);
+    printf("\nTest popback\n");
+    my_str_t new_this;
+    my_str_from_cstr(&new_this, "12345", 20);
+    printf("Before: %s\n", new_this.data);
+    printf("Char deleted: %c\n",(char)my_str_popback(&new_this));
+    printf("After: %s\n", new_this.data);
 
     char cstr2[] = ", world";
 
 //    test append cstr
-    printf("\ntest append cstr\n");
+    printf("\nTest append cstr\n");
+    printf("\nBefore: \"%s\"\n", this.data);
+    printf("Word to append: \"%s\"\n", cstr2);
     my_str_append_cstr(&this, cstr2);
-    printf("new %s\n", this.data);
-    printf("%zu\n", this.size_m);
-    printf("%zu", this.capacity_m);
+    printf("Result \"%s\"\n", this.data);
+    printf("Length of result: %zu\n", this.size_m);
+    printf("Buffer size: %zu\n", this.capacity_m);
 
 //    test copy
-    printf("\ntest copy\n");
-    char try_copy[] = "try copy! 123";
-    char to_copy[30];
-    str_copy(to_copy, try_copy);
-    printf("%s", to_copy);
+    printf("\nTest copy\n");
+    my_str_t from;
+    my_str_t to;
+    my_str_from_cstr(&from, "lmarinen", 10);
+    my_str_copy(&from, &to, 10);
+    printf("\nStr from: \"%s\"", from.data);
+    printf("\nResult: %s\n", to.data);
 
-//    test cat
-    printf("\ntest cat\n");
-    char yes[] = " yes";
-    char *after_cat[30];
-    *after_cat = str_cat(to_copy, yes);
-    printf("%s", *after_cat);
 
 //    test find substring
-    printf("\ntest find substring\n");
+    printf("\nTest find substring\n");
     my_str_t to_find;
     my_str_from_cstr(&to_find, "or", 30);
     printf("search %s in %s\n", to_find.data, this.data);
@@ -517,7 +521,7 @@ int main() {
 
 
 //    test get substring
-    printf("\ntest get substring\n");
+    printf("\nTest get substring\n");
     my_str_t substr;
     my_str_create(&substr, 30);
     printf("\nbefore: %s", substr.data);
@@ -538,15 +542,7 @@ int main() {
     printf("Index of 8, beginning with 0: %zu\n", my_str_find_c(&test_str, '8', 0));
     printf("\nTest find if:\n");
     printf("Our string: %s\n", test_str.data);
-    printf("Index of first symbol that is either 1 or 8: %zu", my_str_find_if(&test_str, &test_function_for_chars));
-//    test pop
-    printf("\ntest pop\n");
-    my_str_t new_this;
-    my_str_from_cstr(&new_this, "12345", 20);
-    printf("Before: %s\n", new_this.data);
-    printf("Char deleted: %c\n",(char)my_str_popback(&new_this));
-    printf("After: %s\n", new_this.data);
-
+    printf("Index of first symbol that is either 1 or 8: %zu\n", my_str_find_if(&test_str, &test_function_for_chars));
     return 0;
 }
 

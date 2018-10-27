@@ -6,7 +6,7 @@
 #define MY_STRING_STRING_H
 
 #include <stdlib.h>
-
+//
 typedef struct my_str_t my_str_t;
 char *str_copy(char *destination, char *source);
 size_t str_len(const char *str);

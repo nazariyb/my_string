@@ -111,11 +111,11 @@ size_t my_str_size(const my_str_t *str) {
     return str->size_m;
 }
 
-//! Повертає розмір буфера:
 void my_str_free(my_str_t *str) {
     free(str->data);
 }
 
+//! Повертає розмір буфера:
 size_t my_str_capacity(const my_str_t *str) {
     return str->capacity_m;
 };
@@ -295,9 +295,9 @@ int my_str_copy(const my_str_t *from, my_str_t *to, int reserve) {
         my_str_create(to, from->size_m);
     }
     for (int i = 0; i < from->size_m; i++) {
-        to->data[i] = from->data[i];
+        my_str_pushback(to, from->data[i]);
     }
-    to->data[to->size_m + 1] = '\0';
+    to->data[from->size_m + 1] = '\0';
     return 0;
 }
 
