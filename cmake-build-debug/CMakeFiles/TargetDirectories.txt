@@ -1,3 +1,0 @@
-/mnt/c/Users/3naza/OneDrive/Documents/poc/labs/my_string/cmake-build-debug/CMakeFiles/rebuild_cache.dir
-/mnt/c/Users/3naza/OneDrive/Documents/poc/labs/my_string/cmake-build-debug/CMakeFiles/my_string.c.dir
-/mnt/c/Users/3naza/OneDrive/Documents/poc/labs/my_string/cmake-build-debug/CMakeFiles/edit_cache.dir
