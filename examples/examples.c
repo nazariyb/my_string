@@ -49,10 +49,12 @@ void main(int* argc, char* argv[]) {
 
     // Example of size
     printf("\nSize\n");
+    printf("Test string 2: %s", my_str_getdata(&test_string2));
     printf("Size of test string 2: %ld\n", my_str_size(&test_string2));
 
     // Example of empty
     printf("\nEmpty\n");
+    printf("Test string 2: %s\n", my_str_getdata(&test_string2));
     printf("Test string 2 is empty: %d\n", my_str_empty(&test_string2));
 
     // Example of free
@@ -82,6 +84,7 @@ void main(int* argc, char* argv[]) {
 
     // Example of getting character
     printf("\nGetting character\n");
+    printf("Test string 3, test string 0: \"%s\", \"%s\"\n", my_str_getdata(&test_string3), my_str_getdata(&test_string0));
     printf("Characted on position 3 in test string 0: \'%c\'\n", (char) my_str_getc(&test_string0, 3));
 
     // Example of putting character
@@ -110,11 +113,13 @@ void main(int* argc, char* argv[]) {
     // Example of inserting another my_str_t
     printf("\nInsert another my_str_t\n");
     my_str_insert(&test_string0, &test_string3, 3);
+    printf("Test string 3, test string 0: \"%s\", \"%s\"", my_str_getdata(&test_string3), my_str_getdata(&test_string0));
     printf("After inserting  test string 3 in position 3: \"%s\"\n", my_str_getdata(&test_string0));
 
     // Example of inserting c-string
     printf("\nInsert c-string\n");
     char *c_string = "Alaska";
+    printf("Test string 0 before: \"%s\"", my_str_getdata(&test_string0));
     my_str_insert_cstr(&test_string0, c_string, 1);
     printf("After inserting  c-string in position 1: \"%s\"\n", my_str_getdata(&test_string0));
 
@@ -134,10 +139,13 @@ void main(int* argc, char* argv[]) {
 
     // Example of string comparison
     printf("\nString comparison\n");
+    char * string0  = "honest";
     my_str_t test_string4;
-    my_str_create(&test_string4, 3);
+    my_str_from_cstr(&test_string4, "gravel", 38);
+    printf("Our strings to compare : \"%s\", \"%s\"\n", my_str_getdata(&test_string4), string0);
+    printf("Result: %d\n", my_str_cmp(&test_string4, string0));
 
-    // example of read file (pattern)
+    //
     FILE* inp_file = fopen(argv[1], "r");
     my_str_t file_str;
     my_str_read_file(&file_str, inp_file);
@@ -150,10 +158,6 @@ void main(int* argc, char* argv[]) {
     printf("\n%s\n", my_str_getdata(&read_str));
 
 
-    char * string0  = "honest";
-    my_str_from_cstr(&test_string4, "gravel", 38);
-    printf("Our strings to compare : \"%s\", \"%s\"\n", my_str_getdata(&test_string4), string0);
-    printf("Result: %d\n", my_str_cmp(&test_string4, string0));
 
     // Example of getting a link to char array
     const char * string1 = my_str_get_cstr(&test_string4);
