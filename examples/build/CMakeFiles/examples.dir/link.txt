@@ -1,0 +1,1 @@
+/usr/bin/cc    CMakeFiles/examples.dir/examples.c.o  -o examples  -L/home/arattel/CLionProjects/my_string/examples/../library/bin -Wl,-rpath,/home/arattel/CLionProjects/my_string/examples/../library/bin -l_my_string 
