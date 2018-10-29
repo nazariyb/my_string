@@ -1,3 +1,0 @@
-/home/arattel/CLionProjects/my_string/library/build/CMakeFiles/rebuild_cache.dir
-/home/arattel/CLionProjects/my_string/library/build/CMakeFiles/_my_string.dir
-/home/arattel/CLionProjects/my_string/library/build/CMakeFiles/edit_cache.dir
