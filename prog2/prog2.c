@@ -5,18 +5,17 @@
 #include <ctype.h>
 #include "my_string.h"
 
-my_str_t get_out_file_name(char inp_file_name[]) {
+void get_out_file_name(my_str_t* out_file_name, char inp_file_name[]) {
     
-    my_str_t out_file_name;
-    my_str_from_cstr(&out_file_name, inp_file_name, 104);
+    my_str_from_cstr(out_file_name, inp_file_name, 104);
     
     my_str_t txt_str;
     my_str_from_cstr(&txt_str, ".txt", 4);
     
-    size_t out_pos = my_str_find(&out_file_name, &txt_str, 0);
-    my_str_insert_cstr(&out_file_name, "_out", out_pos);
+    size_t out_pos = my_str_find(out_file_name, &txt_str, 0);
+    my_str_insert_cstr(out_file_name, "_out", out_pos);
+    my_str_free(&txt_str);
     
-    return out_file_name;
 }
 
 int main(int argc, char *argv[]) {
@@ -45,11 +44,14 @@ int main(int argc, char *argv[]) {
         
     }
     
-    my_str_t out_file_name = get_out_file_name(argv[1]);
+    my_str_t out_file_name;
+    get_out_file_name(&out_file_name, argv[1]);
 
     FILE* out_file = fopen(my_str_getdata(&out_file_name), "w");
     fputs(my_str_getdata(&file_str), out_file);
 
+    my_str_free(&out_file_name);
+    my_str_free(&file_str);
     fclose(inp_file);
     fclose(out_file);
     return EXIT_SUCCESS;
