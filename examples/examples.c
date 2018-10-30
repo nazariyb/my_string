@@ -13,6 +13,7 @@ void main(int* argc, char* argv[]) {
     my_str_create(&test_string0, 38);
 
     //Example of pushback function
+    printf("Before pushback: %s", my_str_getcstr(&test_string0));
     my_str_pushback(&test_string0, '1');
     printf("\nPushback");
     printf("\nResult: \"%s\" \n", my_str_getdata(&test_string0));
@@ -28,6 +29,7 @@ void main(int* argc, char* argv[]) {
     // Example of creation my_str_t from c-string
     printf("\nCreation my_str_t from c-string\n");
     my_str_t test_string1;
+    printf("Should be \"Hello word\"");
     my_str_from_cstr(&test_string1, "Hello world", 38);
     printf("Result: \"%s\"\n", my_str_getdata(&test_string1));
     printf("Length: %ld\n", my_str_size(&test_string1));
@@ -43,6 +45,7 @@ void main(int* argc, char* argv[]) {
     // Example of copying
     printf("\nCopying\n");
     my_str_t test_string2;
+    printf("from: %s to %s\n", my_str_get_cstr(&test_string1), my_str_get_cstr(&test_string2));
     my_str_copy(&test_string1, &test_string2, 1);
     printf("After: \"%s\"\n", my_str_getdata(&test_string2));
     printf("Length after: %ld\n", my_str_size(&test_string2));
@@ -51,50 +54,37 @@ void main(int* argc, char* argv[]) {
 
     // Example of size
     printf("\nSize\n");
-    printf("Test string 2: %s", my_str_getdata(&test_string2));
     printf("Size of test string 2: %ld\n", my_str_size(&test_string2));
 
     // Example of empty
     printf("\nEmpty\n");
-    printf("Test string 2: %s\n", my_str_getdata(&test_string2));
     printf("Test string 2 is empty: %d\n", my_str_empty(&test_string2));
-
-    // Example of free
-//    printf("\nFree\n");
-//    printf("String after: \"%s\"\n", my_str_getdata(&test_string2));
 
     // Exaple of capacity
     printf("\nCapacity\n");
     printf("Test string 2 capacity: %ld\n", my_str_capacity(&test_string2));
 
-    // Example of clear
-//    my_str_clear(&test_string1);
-
     //Example of substring
     printf("\nSubstring\n");
     my_str_t test_string3;
-
     my_str_create(&test_string3, 50);
-
     my_str_t test_string5;
     my_str_copy(&test_string0, &test_string5, 1);
     my_str_free(&test_string0);
-
     printf("5 is: %s, 3 is: %s\n", my_str_getdata(&test_string5), my_str_getdata(&test_string3));
     my_str_substr(&test_string5, &test_string3, 1, 3);
     printf("Result: \"%s\"\n", my_str_getdata(&test_string3));
     printf("Result length: %ld\n", my_str_size(&test_string3));
 
     //Example of finding substring
-//  TODO: FIX
     printf("\nSubstring find\n");
     printf("test string 3 is: %s, test string 5 is: %s\n", my_str_getdata(&test_string3), my_str_getdata(&test_string5));
     printf("Index of test string 3 in test string 0: %ld\n", my_str_find(&test_string5, &test_string3, 0));
 
     // Example of getting character
     printf("\nGetting character\n");
-    printf("Test string 3, test string 0: \"%s\", \"%s\"\n", my_str_getdata(&test_string3), my_str_getdata(&test_string0));
-    printf("Characted on position 3 in test string 0: \'%c\'\n", (char) my_str_getc(&test_string0, 3));
+    printf("Characted on position 3 in test string 0: \'%c\'\n", (char) my_str_getc(&test_string5, 3));
+
     // Example of putting character
     printf("\nPutting character\n");
     printf("Before: \"%s\"\n", my_str_getdata(&test_string5));
@@ -127,13 +117,10 @@ void main(int* argc, char* argv[]) {
     // Example of inserting c-string
     printf("\nInsert c-string\n");
     char *c_string = "Alaska";
-    printf("Test string 0 before: \"%s\"", my_str_getdata(&test_string0));
-    my_str_insert_cstr(&test_string0, c_string, 1);
-    printf("After inserting  c-string in position 1: \"%s\"\n", my_str_getdata(&test_string0));
-
+    my_str_insert_cstr(&test_string5, c_string, 1);
+    printf("After inserting  c-string in position 1: \"%s\"\n", my_str_getdata(&test_string5));
 
     // Example of appending another my_str_t
-    //  TODO: FIX
     printf("\nAppending another my_str_t\n");
     printf("Before: \"%s\"\n", my_str_getdata(&test_string3));
     my_str_append(&test_string3, &test_string5);
@@ -153,11 +140,13 @@ void main(int* argc, char* argv[]) {
 
     // Example of string comparison
     printf("\nString comparison\n");
-    char * string0  = "honest";
     my_str_t test_string4;
+
+    char * string0  = "honest";
     my_str_from_cstr(&test_string4, "gravel", 38);
     printf("Our strings to compare : \"%s\", \"%s\"\n", my_str_getdata(&test_string4), string0);
     printf("Result: %d\n", my_str_cmp(&test_string4, string0));
+
     // Example of getting a link to char array
     const char * string1 = my_str_get_cstr(&test_string4);
     //Example of finding character by function
@@ -169,12 +158,6 @@ void main(int* argc, char* argv[]) {
         }
     }
 
-    printf("\nFinding a character by function\n");
-    printf("Our test function returns True only if character is equal to \'1\'or \'8\'\n");
-    printf("Our string: \"%s\"\n", my_str_getdata(&test_string3));
-    printf("Index of character that is appropriate for this function: %ld\n", my_str_find_if(&test_string3, &is_eight_or_1));
     my_str_free(&test_string3);
     my_str_free(&test_string4);
-//    my_str_free(&file_str);
-//    my_str_free(&read_str);
 }

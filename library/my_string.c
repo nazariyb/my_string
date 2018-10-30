@@ -220,7 +220,7 @@ void getZarr(char str[], size_t* Z, size_t n) {
 //! Якщо більше за розмір -- вважати, що не знайдено.
 size_t my_str_find(const my_str_t *str, const my_str_t *tofind, size_t from) {
     if (tofind->size_m > str->size_m) return (size_t) -1u;
-    size_t size_of_str = str->size_m;
+    size_t size_of_str = str->size_m + 1;
     char *text = malloc(tofind->size_m + 1 + size_of_str - from);
 
     my_str_t str_in_use;
@@ -229,12 +229,14 @@ size_t my_str_find(const my_str_t *str, const my_str_t *tofind, size_t from) {
 //    my_str_copy(str, &str_in_use, 0);
 
     size_t temp_i;
-    for (temp_i = 0; temp_i < size_of_str; temp_i++) {
+    for (temp_i = 0; temp_i < size_of_str - 1; temp_i++) {
         my_str_pushback(&str_in_use, str->data[temp_i]);
+//        printf("add: %c\n", str->data[temp_i]);
 //        str_in_use.data[temp_i] = str->data[temp_i];
+//        printf("string is: %s\n", str_in_use.data);
     }
-//    str_in_use.data[temp_i + 1] = '\0';
 
+//    str_in_use.data[temp_i + 1] = '\0';
     str_copy(text, tofind->data);
     str_cat(text, "$");
 //    printf("\ntext is: %s,\tstr is: %s\n", text, str_in_use.data);
@@ -250,9 +252,9 @@ size_t my_str_find(const my_str_t *str, const my_str_t *tofind, size_t from) {
     getZarr(text, Z, l);
 
 //    printf("\nZ is: [ ");
-//    for (size_t i = 0; i < l; i++){
+    for (size_t i = 0; i < l; i++){
 //        printf("%zu ", Z[i]);
-//    }
+    }
 //    printf("]\n");
 
     free(text);
@@ -487,7 +489,8 @@ int my_str_cmp(const my_str_t *str, const char *from) {
 //! Якщо в буфері було зарезервовано на байт більше за макс. розмір, можна
 //! просто додати нульовий символ в кінці та повернути вказівник data.
 const char *my_str_get_cstr(my_str_t *str) {
-    return str->data;
+    if (str->size_m) return str->data;
+    return NULL;
 }
 
 
@@ -559,6 +562,7 @@ int my_str_read(my_str_t* str) {
 }
 
 //int main(int* argc, char* argv[]) {
+
 //  tesr read file
 //    FILE* inp_file = fopen(argv[1], "r");
 //    my_str_t file_str;
@@ -644,9 +648,9 @@ int my_str_read(my_str_t* str) {
 //    test find substring
 //    printf("\ntest find substring\n");
 //    my_str_t to_find;
-//    my_str_from_cstr(&to_find, "36", 30);
+//    my_str_from_cstr(&to_find, ".txt", 30);
 //    my_str_t num;
-//    my_str_from_cstr(&num, "13619", 30);
+//    my_str_from_cstr(&num, "sample.txt", 30);
 //    my_str_append_cstr(&num, "lak");
 //    my_str_popback(&num);
 //    printf("search %s in %s\n", to_find.data, num.data);

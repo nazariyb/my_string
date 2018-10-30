@@ -18,7 +18,7 @@ some_folder/
          |
          |__(other files)
 
-to build project using cmake you should enter the next commands
+to build executable using cmake you should enter the next commands
 1)../prog2$ mkdir <build folder> && cd <build folder>
 
 f. e.
@@ -78,7 +78,7 @@ File have been opened successfully
 File have been written
 File have been closed
 
-# there is also a possibilityto compile program manually:
+# there is also a possibility to compile program manually:
 # (! it will be saved in the same directory but not in bin/)
 ../prog2$ gcc prog2.c ../library/my_string.c ../library/my_string.h -o prog2test -I ../library
 
